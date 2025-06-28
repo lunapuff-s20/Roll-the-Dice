@@ -4,7 +4,6 @@ import os
 import sys
 import itertools
 
-
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -17,7 +16,6 @@ def spinning_cursor(duration=2):
         time.sleep(0.15)
     print("\r", end="")
 
-
 def rolling_animation():
     clear()
     spinning_cursor()       
@@ -29,14 +27,7 @@ def rolling_animation():
         "[o   o]\n[  o  ]\n[o   o]",   # 5
         "[o   o]\n[o   o]\n[o   o]"    # 6
     ]
-    
-    print("Rolling the die", end="", flush=True)
-    for _ in range(5):
-        print(".", end="", flush=True)
-        time.sleep(0.3)
-    # print("\n")
 
-    # Simulate rolling with changing faces
     for _ in range(10):
         clear()
         face = random.choice(dice_faces)
@@ -45,7 +36,6 @@ def rolling_animation():
         time.sleep(0.2)
 
 def roll_die():
-    input("Press Enter to roll the die...")
     rolling_animation()
     result = random.randint(1, 6)
     face = {
@@ -61,9 +51,13 @@ def roll_die():
     print(face[result])
 
 if __name__ == "__main__":
+    first = True
     while True:
+        if first:
+            input("Press Enter to roll the die...")
+            first = False
         roll_die()
         again = input("\nRoll again? (y/n): ").lower()
         if again != 'y':
-            print("Goodbye!")
+            print("Thanks for playing!")
             break
